@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #fff;
   --btn-default-hover-color: #222;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #2b303b;
-  --highlight-foreground: #c0c5ce;
-  --highlight-gutter-background: #393e49;
-  --highlight-gutter-foreground: #b1b6bf;
+  --highlight-background: #fafafa;
+  --highlight-foreground: #383a42;
+  --highlight-gutter-background: #e6e6e7;
+  --highlight-gutter-foreground: #4b4d54;
 }
 html {
   line-height: 1.15; /* 1 */
@@ -360,71 +360,89 @@ td {
   top: -5px;
   transform: rotate(-45deg);
 }
-/* Ocean Dark Theme */
-/* https://github.com/gavsiu */
-/* Original theme - https://github.com/chriskempson/base16 */
+/*
 
-/* Ocean Comment */
-.hljs-comment,
-.hljs-quote {
-  color: #65737e;
-}
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
 
-/* Ocean Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-  color: #bf616a;
-}
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
 
-/* Ocean Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-  color: #d08770;
-}
-
-/* Ocean Yellow */
-.hljs-attribute {
-  color: #ebcb8b;
-}
-
-/* Ocean Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-  color: #a3be8c;
-}
-
-/* Ocean Blue */
-.hljs-title,
-.hljs-section {
-  color: #8fa1b3;
-}
-
-/* Ocean Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #b48ead;
-}
+*/
 
 .hljs {
   display: block;
   overflow-x: auto;
-  background: #2b303b;
-  color: #c0c5ce;
   padding: 0.5em;
+  color: #383a42;
+  background: #fafafa;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #50a14f;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
 }
 
 .hljs-emphasis {
@@ -433,6 +451,10 @@ td {
 
 .hljs-strong {
   font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
 }
 
 .highlight:hover .copy-btn,
@@ -2682,7 +2704,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #cfffd1;
+  background: #ff24e5;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
