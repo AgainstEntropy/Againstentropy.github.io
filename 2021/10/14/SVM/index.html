@@ -20,23 +20,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"againstentropy.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://againstentropy.github.io/index.html">
+<meta name="description" content="&amp;#x5199;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E1C;&amp;#x897F;&amp;#xFF0C;&amp;#x65B9;&amp;#x4FBF;&amp;#x7406;&amp;#x89E3;&amp;#x5982;&amp;#x4F55;&amp;#x6C42;SVM&amp;#x7684;hinge_loss&amp;#x548C;&amp;#x6743;&amp;#x91CD;&amp;#x77E9;&amp;#x9635;$W$&amp;#x7684;&amp;#x68AF;&amp;#x5EA6;$dW$&amp;#x3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM">
+<meta property="og:url" content="https://againstentropy.github.io/2021/10/14/SVM/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&amp;#x5199;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E1C;&amp;#x897F;&amp;#xFF0C;&amp;#x65B9;&amp;#x4FBF;&amp;#x7406;&amp;#x89E3;&amp;#x5982;&amp;#x4F55;&amp;#x6C42;SVM&amp;#x7684;hinge_loss&amp;#x548C;&amp;#x6743;&amp;#x91CD;&amp;#x77E9;&amp;#x9635;$W$&amp;#x7684;&amp;#x68AF;&amp;#x5EA6;$dW$&amp;#x3">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://againstentropy.github.io/2021/10/14/SVM/output_18_0.png">
+<meta property="article:published_time" content="2021-10-13T17:28:50.223Z">
+<meta property="article:modified_time" content="2021-10-13T17:32:46.741Z">
 <meta property="article:author" content="Ethan Wang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://againstentropy.github.io/2021/10/14/SVM/output_18_0.png">
 
 
-<link rel="canonical" href="https://againstentropy.github.io/">
+<link rel="canonical" href="https://againstentropy.github.io/2021/10/14/SVM/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://againstentropy.github.io/2021/10/14/SVM/","path":"2021/10/14/SVM/","title":"SVM"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hexo</title>
+<title>SVM | Hexo</title>
   
 
 
@@ -144,16 +150,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://againstentropy.github.io/2021/10/14/SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -166,9 +173,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/14/SVM/" class="post-title-link" itemprop="url">SVM</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          SVM
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -192,7 +199,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;$dW$&#x3002;</p>
+        <p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;$dW$&#x3002;</p>
 <p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5171;&#x6709;10&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x88AB;&#x5206;&#x4E3A;3&#x7C7B;&#x3002;&#x7528;$X_i$(<code>imgs[i](i=1,2,...,10)</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x7684;&#x6240;&#x6709;&#x50CF;&#x7D20;&#xFF0C;$y_i$(<code>label[i]</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x5BF9;&#x5E94;&#x7684;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF08;<code>label[i]=0,1,2</code>&#xFF09;&#x3002;&#x5047;&#x8BBE;&#x6BCF;&#x5F20;&#x56FE;&#x7247;&#x7684;&#x957F;&#x548C;&#x5BBD;&#x90FD;&#x4E3A;2&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x6709;3&#x4E2A;&#x901A;&#x9053;&#xFF08;$\color{red}{R}\color{green}{G}\color{blue}{B}$&#xFF09;&#x3002;</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">imgs = np.random.rand(<span class="number">10</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">label = np.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=<span class="number">10</span>)</span><br><span class="line">img_test = np.random.rand(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;\n&quot;</span>, imgs[:<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n&#x6240;&#x6709;&#x56FE;&#x7247;&#x7684;&#x6807;&#x7B7E;&#x662F;&#xFF1A;\n&quot;</span>, label)</span><br></pre></td></tr></table></figure>
 <pre><code>&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;
@@ -430,7 +437,6 @@ loss = 5.231505276181342
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">N = <span class="number">20</span>  <span class="comment"># &#x56FE;&#x7247;&#x6570;&#x91CF;</span></span><br><span class="line">C = <span class="number">4</span>   <span class="comment"># &#x5206;&#x7C7B;&#x6570;&#x91CF;</span></span><br><span class="line">D = <span class="number">3</span>   <span class="comment"># &#x56FE;&#x7247;&#x5C3A;&#x5BF8;</span></span><br><span class="line"><span class="comment"># &#x968F;&#x673A;&#x521D;&#x59CB;&#x5316;</span></span><br><span class="line">imgs = np.random.rand(N, D, D, <span class="number">3</span>)</span><br><span class="line">label = np.random.randint(<span class="number">0</span>, C, size=N)</span><br><span class="line"></span><br><span class="line">imgs = imgs.reshape(N, -<span class="number">1</span>)</span><br><span class="line">imgs = np.hstack([imgs, np.ones((imgs.shape[<span class="number">0</span>], <span class="number">1</span>))])</span><br><span class="line">W = np.random.randn(imgs.shape[<span class="number">1</span>], C)</span><br><span class="line"></span><br><span class="line">loss_list, correct_rate_list = [], []</span><br><span class="line">T = np.arange(<span class="number">200</span>)  <span class="comment"># &#x8BAD;&#x7EC3;&#x6B21;&#x6570;</span></span><br><span class="line">alpha = <span class="number">0.2</span>         <span class="comment"># &#x5B66;&#x4E60;&#x7387;&#xFF08;&#x6B65;&#x957F;&#xFF09;</span></span><br><span class="line">delta = <span class="number">1</span>           <span class="comment"># &#x5B89;&#x5168;&#x8DDD;&#x79BB;</span></span><br><span class="line">reg = <span class="number">5e-5</span>          <span class="comment"># &#x6B63;&#x5219;&#x60E9;&#x7F5A;&#x5F3A;&#x5EA6;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> T:</span><br><span class="line">    loss, dW = svm_loss_grad(W, imgs, label, delta=delta, reg=reg)</span><br><span class="line">    W -= alpha * dW</span><br><span class="line"></span><br><span class="line">    scores = np.dot(imgs, W)</span><br><span class="line">    label_pred = np.argmax(scores, axis=<span class="number">1</span>)</span><br><span class="line">    correct_rate = np.<span class="built_in">sum</span>(label_pred == label) / <span class="built_in">len</span>(label)</span><br><span class="line"></span><br><span class="line">    loss_list.append(loss)</span><br><span class="line">    correct_rate_list.append(correct_rate)</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">plt.plot(T, loss_list)</span><br><span class="line">plt.title(<span class="string">&quot;loss&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">plt.plot(T, correct_rate_list)</span><br><span class="line">plt.title(<span class="string">&quot;correct_rate&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p><img src="/2021/10/14/SVM/output_18_0.png" alt="png"></p>
 
-      
     </div>
 
     
@@ -438,83 +444,22 @@ loss = 5.231505276181342
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/13/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://againstentropy.github.io/2021/10/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ethan Wang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/13/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-13 19:51:15" itemprop="dateCreated datePublished" datetime="2021-10-13T19:51:15+08:00">2021-10-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
