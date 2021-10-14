@@ -220,7 +220,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-15 01:21:03" itemprop="dateModified" datetime="2021-10-15T01:21:03+08:00">2021-10-15</time>
+        <time title="修改时间：2021-10-15 02:03:47" itemprop="dateModified" datetime="2021-10-15T02:03:47+08:00">2021-10-15</time>
       </span>
 
   
@@ -337,7 +337,8 @@ labels: [2 1 0 2 1 2 2 2 1 1]
 <li>&#x5C06;&#x6BCF;&#x4E2A;&#x56FE;&#x7247;&#x7684;&#x6B63;&#x786E;&#x5206;&#x7C7B;&#x4F4D;&#x7F6E;&#x7F6E;&#x96F6;&#xFF0C;&#x56E0;&#x4E3A;&#x516C;&#x5F0F;&#x4E2D;&#x5E76;&#x4E0D;&#x5305;&#x542B;&#x8FD9;&#x4E00;&#x9879;&#xFF1B;</li>
 <li>&#x5C06;&#x5C0F;&#x4E8E;&#x96F6;&#x7684;&#x4F4D;&#x7F6E;&#x7F6E;&#x96F6;&#xFF0C;&#x56E0;&#x4E3A;&#x516C;&#x5F0F;&#x4E2D;&#x7684;$\max(0, blabla)$&#x4FDD;&#x8BC1;&#x4E86;&#x8FD9;&#x4E00;&#x70B9;&#x3002;</li>
 </ol>
-<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x8499;&#x7248;<code>mask</code>&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E24;&#x6B65;&#x5904;&#x7406;&#xFF0C;&#x800C;&#x4E0D;&#x76F4;&#x63A5;&#x4FEE;&#x6539;$L$&#x672C;&#x8EAB;&#x3002;<br>&#xFF08;&#x6CE8;&#xFF1A;&#x4F7F;&#x7528;<code>mask</code>&#x7684;&#x597D;&#x5904;&#x5C06;&#x5728;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;$dW$&#x65F6;&#x5F97;&#x4EE5;&#x4F53;&#x73B0;&#x3002;&#xFF09;</p>
+<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x8499;&#x7248;<code>mask</code>&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E24;&#x6B65;&#x5904;&#x7406;&#xFF0C;&#x800C;&#x4E0D;&#x76F4;&#x63A5;&#x4FEE;&#x6539;$L$&#x672C;&#x8EAB;&#x3002;<br><div class="note info no-icon"><p>&#x6CE8;&#xFF1A;&#x4F7F;&#x7528;<code>mask</code>&#x7684;&#x597D;&#x5904;&#x5C06;&#x5728;&#x8BA1;&#x7B97;&#x68AF;&#x5EA6;$dW$&#x65F6;&#x5F97;&#x4EE5;&#x4F53;&#x73B0;&#x3002;</p>
+</div></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mask = np.ones(L.shape)</span><br><span class="line">mask[<span class="built_in">range</span>(L.shape[<span class="number">0</span>]), label] = <span class="number">0</span>  <span class="comment"># &#x6B63;&#x786E;&#x5206;&#x7C7B;&#x4F4D;&#x7F6E;&#x7F6E;&#x96F6;</span></span><br><span class="line">mask[L &lt; <span class="number">0</span>] = <span class="number">0</span>  <span class="comment"># &#x5C0F;&#x4E8E;&#x96F6;&#x7684;&#x4F4D;&#x7F6E;&#x7F6E;&#x96F6;</span></span><br><span class="line">L *= mask</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;mask = \n&quot;</span>, mask)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nL = \n&quot;</span>, L)</span><br></pre></td></tr></table></figure>
 <pre><code>mask = 
  [[1. 0. 0.]
