@@ -19,20 +19,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"againstentropy.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="&amp;#x6B63;&amp;#x6587;&amp;#x5199;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E1C;&amp;#x897F;&amp;#xFF0C;&amp;#x65B9;&amp;#x4FBF;&amp;#x7406;&amp;#x89E3;&amp;#x5982;&amp;#x4F55;&amp;#x6C42;SVM&amp;#x7684;hinge_loss&amp;#x548C;&amp;#x6743;&amp;#x91CD;&amp;#x77E9;&amp;#x9635;$W$&amp;#x7684;&amp;#x68AF;">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"againstentropy.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x6B63;&amp;#x6587;&amp;#x5199;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E1C;&amp;#x897F;&amp;#xFF0C;&amp;#x65B9;&amp;#x4FBF;&amp;#x7406;&amp;#x89E3;&amp;#x5982;&amp;#x4F55;&amp;#x6C42;SVM&amp;#x7684;hinge_loss&amp;#x548C;&amp;#x6743;&amp;#x91CD;&amp;#x77E9;&amp;#x9635;$W$&amp;#x7684;&amp;#x68AF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM">
 <meta property="og:url" content="https://againstentropy.github.io/2021/10/14/SVM/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="&amp;#x6B63;&amp;#x6587;&amp;#x5199;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E1C;&amp;#x897F;&amp;#xFF0C;&amp;#x65B9;&amp;#x4FBF;&amp;#x7406;&amp;#x89E3;&amp;#x5982;&amp;#x4F55;&amp;#x6C42;SVM&amp;#x7684;hinge_loss&amp;#x548C;&amp;#x6743;&amp;#x91CD;&amp;#x77E9;&amp;#x9635;$W$&amp;#x7684;&amp;#x68AF;">
+<meta property="og:site_name" content="小光のBlog">
+<meta property="og:description" content="&amp;#x6B63;&amp;#x6587;&amp;#x5199;&amp;#x4E00;&amp;#x4E9B;&amp;#x4E1C;&amp;#x897F;&amp;#xFF0C;&amp;#x65B9;&amp;#x4FBF;&amp;#x7406;&amp;#x89E3;&amp;#x5982;&amp;#x4F55;&amp;#x6C42;SVM&amp;#x7684;hinge_loss&amp;#x548C;&amp;#x6743;&amp;#x91CD;&amp;#x77E9;&amp;#x9635;$W$&amp;#x7684;&amp;#x68AF">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/14/SVM/wb.jpeg">
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/14/SVM/margin.jpg">
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/14/SVM/loss_and_train.png">
 <meta property="article:published_time" content="2021-10-13T17:28:50.223Z">
-<meta property="article:modified_time" content="2021-11-03T17:14:35.603Z">
+<meta property="article:modified_time" content="2021-11-04T16:25:56.713Z">
 <meta property="article:author" content="Ethan Wang">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="CV">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://againstentropy.github.io/2021/10/14/SVM/wb.jpeg">
 
@@ -44,7 +46,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://againstentropy.github.io/2021/10/14/SVM/","path":"2021/10/14/SVM/","title":"SVM"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SVM | Hexo</title>
+<title>SVM | 小光のBlog</title>
   
 
 
@@ -63,6 +65,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -70,9 +75,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Hexo</h1>
+      <h1 class="site-title">小光のBlog</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">记录一些历程</p>
   </div>
 
   <div class="site-nav-right">
@@ -86,6 +92,10 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,8 +158,10 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ethan Wang"
+      src="/images/%E8%BF%B7%E8%BF%AD%E9%A6%99.jpg">
   <p class="site-author-name" itemprop="name">Ethan Wang</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">悟以往之不谏，知来者之可追。</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
@@ -159,8 +171,24 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/AgainstEntropy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;AgainstEntropy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:18307110360@fudan.edu.cn" title="E-Mail → mailto:18307110360@fudan.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/12294062" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;12294062" rel="noopener" target="_blank"><i class="fas fa-wifi fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
 
 
 
@@ -202,13 +230,13 @@
     <link itemprop="mainEntityOfPage" href="https://againstentropy.github.io/2021/10/14/SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/%E8%BF%B7%E8%BF%AD%E9%A6%99.jpg">
       <meta itemprop="name" content="Ethan Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="悟以往之不谏，知来者之可追。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="小光のBlog">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -230,10 +258,25 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-04 01:14:35" itemprop="dateModified" datetime="2021-11-04T01:14:35+08:00">2021-11-04</time>
+        <time title="修改时间：2021-11-05 00:25:56" itemprop="dateModified" datetime="2021-11-05T00:25:56+08:00">2021-11-05</time>
       </span>
 
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>13k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>21 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -243,7 +286,109 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="&#x6B63;&#x6587;"><a href="#&#x6B63;&#x6587;" class="headerlink" title="&#x6B63;&#x6587;"></a>&#x6B63;&#x6587;</h2><p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;<code>dW</code>&#x3002;</p>
+        <!-- 
+<div style="width:100%;overflow-x:auto;overflow-y:hidden;">
+<div id="calendar" style="width: 600px;height:185px;"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    function dateFormat(date){
+      date = new Date(date)
+      return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+    }
+    let calendarChart = echarts.init(document.getElementById('calendar'));
+    let endDate = new Date().getTime()
+    let startDate = new Date(endDate - 40*7*24*3600*1000).getTime()
+    let startDay = Math.ceil(startDate/(24*3600*1000))
+    let endDay = Math.ceil(endDate/(24*3600*1000))
+
+    let commitData = {"2021-11-04":4,"2021-10-17":2,"2021-10-15":5,"2021-10-14":4,"2021-10-13":5}
+    let seriesData = []
+
+    for(let i = startDay;i <= endDay;i++){
+      let date = i*24*3600*1000
+      let formatDate = dateFormat(date)
+      let times = commitData[formatDate] || 0
+      seriesData.push([formatDate, times])
+    }
+    let option = {
+      title: {
+        text: "活动日历",
+        x: "center"
+      },
+      backgroundColor: "#f9f9f9",
+      tooltip: {
+        padding: 10,
+        backgroundColor: "#555",
+        borderColor: "#777",
+        borderWidth: 1,
+        formatter: function(a) {
+          var b = a.value;
+          return '<div style="font-size: 14px;">' + b[0] + "：" + b[1] + "</div>"
+        }
+      },
+      visualMap: {
+        show: !1,
+        showLabel: !0,
+        min: 0,
+        max: 4,
+        calculable: !1,
+        inRange: {
+          symbol: "rect",
+          color: ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"]
+        },
+        itemWidth: 12,
+        itemHeight: 12,
+        orient: "horizontal",
+        left: "center",
+        top: 0
+      },
+      calendar: [{
+        top: 50,
+        left: "center",
+        range: [dateFormat(startDate), dateFormat(endDate)],
+        cellSize: [13, 13],
+        splitLine: {
+          show: !1
+        },
+        name: {
+          textStyle: {
+            color: "#3C4858"
+          }
+        },
+        itemStyle: {
+          borderColor: "#fff",
+          borderWidth: 2
+        },
+        yearLabel: {
+          show: !1
+        },
+        monthLabel: {
+          nameMap: "cn",
+          fontSize: 11,
+          color: "#3C4858"
+        },
+        dayLabel: {
+          formatter: "{start} 1st",
+          nameMap: "cn",
+          fontSize: 11,
+          color: "#3C4858"
+        }
+      }],
+      series: [{
+        type: "heatmap",
+        coordinateSystem: "calendar",
+        calendarIndex: 0,
+        data: seriesData
+      }]
+    };
+
+    calendarChart.setOption(option);
+  })();
+</script>
+ -->
+<h2 id="&#x6B63;&#x6587;"><a href="#&#x6B63;&#x6587;" class="headerlink" title="&#x6B63;&#x6587;"></a>&#x6B63;&#x6587;</h2><p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;<code>dW</code>&#x3002;</p>
 <h3 id="&#x6570;&#x636E;"><a href="#&#x6570;&#x636E;" class="headerlink" title="&#x6570;&#x636E;"></a>&#x6570;&#x636E;</h3><h4 id="&#x751F;&#x6210;&#x6570;&#x636E;"><a href="#&#x751F;&#x6210;&#x6570;&#x636E;" class="headerlink" title="&#x751F;&#x6210;&#x6570;&#x636E;"></a>&#x751F;&#x6210;&#x6570;&#x636E;</h4><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5171;&#x6709;10&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x88AB;&#x5206;&#x4E3A;3&#x7C7B;&#x3002;&#x7528;$X_i$(<code>imgs[i](i=1,2,...,10)</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x7684;&#x6240;&#x6709;&#x50CF;&#x7D20;&#xFF0C;$y_i$(<code>label[i]</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x5BF9;&#x5E94;&#x7684;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF08;<code>label[i]=0,1,2</code>&#xFF09;&#x3002;&#x5047;&#x8BBE;&#x6BCF;&#x5F20;&#x56FE;&#x7247;&#x7684;&#x957F;&#x548C;&#x5BBD;&#x90FD;&#x4E3A;2&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x6709;3&#x4E2A;&#x901A;&#x9053;&#xFF08;$\color{red}{R}\color{green}{G}\color{blue}{B}$&#xFF09;&#x3002;</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">imgs = np.random.rand(<span class="number">10</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">label = np.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=<span class="number">10</span>)</span><br><span class="line">img_test = np.random.rand(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;\n&quot;</span>, imgs[:<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n&#x6240;&#x6709;&#x56FE;&#x7247;&#x7684;&#x6807;&#x7B7E;&#x662F;&#xFF1A;\n&quot;</span>, label)</span><br></pre></td></tr></table></figure>
 <pre><code>&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;
@@ -468,6 +613,10 @@ loss = 5.231505276181342
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"><i class="fa fa-tag"></i> ML</a>
+              <a href="/tags/CV/" rel="tag"><i class="fa fa-tag"></i> CV</a>
+          </div>
 
         
 
@@ -504,7 +653,21 @@ loss = 5.231505276181342
   </span>
   <span class="author" itemprop="copyrightHolder">Ethan Wang</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">22 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -512,7 +675,7 @@ loss = 5.231505276181342
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
@@ -534,5 +697,26 @@ loss = 5.231505276181342
 
 
 
-</body>
+<!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.16/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?AgainstEntropy";
+            var git_color =['#ebedf0', '#fafbfc', '#f6f8fa', '#e1e4e8', '#d1d5da', '#959da5', '#6a737d', '#586069', '#444d56', '#2f363d', '#24292e'];
+            var git_user ="AgainstEntropy";
+            var parent_div_git = document.getElementsByClassName('main-inner')[0];
+            var git_div_html = '<div class="post-block animated fadeIn" style="width:100%;height:auto;padding:40px 10px 10px 10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div><footer class="post-footer"><div class="post-eof"></div></footer>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementsByClassName('main-inner')[0]){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body>
 </html>

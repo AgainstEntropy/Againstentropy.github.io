@@ -3,7 +3,109 @@
   <entry>
     <title>SVM</title>
     <url>/2021/10/14/SVM/</url>
-    <content><![CDATA[<h2 id="&#x6B63;&#x6587;"><a href="#&#x6B63;&#x6587;" class="headerlink" title="&#x6B63;&#x6587;"></a>&#x6B63;&#x6587;</h2><p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;<code>dW</code>&#x3002;</p>
+    <content><![CDATA[<!-- 
+<div style="width:100%;overflow-x:auto;overflow-y:hidden;">
+<div id="calendar" style="width: 600px;height:185px;"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    function dateFormat(date){
+      date = new Date(date)
+      return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+    }
+    let calendarChart = echarts.init(document.getElementById('calendar'));
+    let endDate = new Date().getTime()
+    let startDate = new Date(endDate - 40*7*24*3600*1000).getTime()
+    let startDay = Math.ceil(startDate/(24*3600*1000))
+    let endDay = Math.ceil(endDate/(24*3600*1000))
+
+    let commitData = {"2021-11-04":4,"2021-10-17":2,"2021-10-15":5,"2021-10-14":4,"2021-10-13":5}
+    let seriesData = []
+
+    for(let i = startDay;i <= endDay;i++){
+      let date = i*24*3600*1000
+      let formatDate = dateFormat(date)
+      let times = commitData[formatDate] || 0
+      seriesData.push([formatDate, times])
+    }
+    let option = {
+      title: {
+        text: "活动日历",
+        x: "center"
+      },
+      backgroundColor: "#f9f9f9",
+      tooltip: {
+        padding: 10,
+        backgroundColor: "#555",
+        borderColor: "#777",
+        borderWidth: 1,
+        formatter: function(a) {
+          var b = a.value;
+          return '<div style="font-size: 14px;">' + b[0] + "：" + b[1] + "</div>"
+        }
+      },
+      visualMap: {
+        show: !1,
+        showLabel: !0,
+        min: 0,
+        max: 4,
+        calculable: !1,
+        inRange: {
+          symbol: "rect",
+          color: ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"]
+        },
+        itemWidth: 12,
+        itemHeight: 12,
+        orient: "horizontal",
+        left: "center",
+        top: 0
+      },
+      calendar: [{
+        top: 50,
+        left: "center",
+        range: [dateFormat(startDate), dateFormat(endDate)],
+        cellSize: [13, 13],
+        splitLine: {
+          show: !1
+        },
+        name: {
+          textStyle: {
+            color: "#3C4858"
+          }
+        },
+        itemStyle: {
+          borderColor: "#fff",
+          borderWidth: 2
+        },
+        yearLabel: {
+          show: !1
+        },
+        monthLabel: {
+          nameMap: "cn",
+          fontSize: 11,
+          color: "#3C4858"
+        },
+        dayLabel: {
+          formatter: "{start} 1st",
+          nameMap: "cn",
+          fontSize: 11,
+          color: "#3C4858"
+        }
+      }],
+      series: [{
+        type: "heatmap",
+        coordinateSystem: "calendar",
+        calendarIndex: 0,
+        data: seriesData
+      }]
+    };
+
+    calendarChart.setOption(option);
+  })();
+</script>
+ -->
+<h2 id="&#x6B63;&#x6587;"><a href="#&#x6B63;&#x6587;" class="headerlink" title="&#x6B63;&#x6587;"></a>&#x6B63;&#x6587;</h2><p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;<code>dW</code>&#x3002;</p>
 <h3 id="&#x6570;&#x636E;"><a href="#&#x6570;&#x636E;" class="headerlink" title="&#x6570;&#x636E;"></a>&#x6570;&#x636E;</h3><h4 id="&#x751F;&#x6210;&#x6570;&#x636E;"><a href="#&#x751F;&#x6210;&#x6570;&#x636E;" class="headerlink" title="&#x751F;&#x6210;&#x6570;&#x636E;"></a>&#x751F;&#x6210;&#x6570;&#x636E;</h4><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5171;&#x6709;10&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x88AB;&#x5206;&#x4E3A;3&#x7C7B;&#x3002;&#x7528;$X_i$(<code>imgs[i](i=1,2,...,10)</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x7684;&#x6240;&#x6709;&#x50CF;&#x7D20;&#xFF0C;$y_i$(<code>label[i]</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x5BF9;&#x5E94;&#x7684;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF08;<code>label[i]=0,1,2</code>&#xFF09;&#x3002;&#x5047;&#x8BBE;&#x6BCF;&#x5F20;&#x56FE;&#x7247;&#x7684;&#x957F;&#x548C;&#x5BBD;&#x90FD;&#x4E3A;2&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x6709;3&#x4E2A;&#x901A;&#x9053;&#xFF08;$\color{red}{R}\color{green}{G}\color{blue}{B}$&#xFF09;&#x3002;</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">imgs = np.random.rand(<span class="number">10</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">label = np.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=<span class="number">10</span>)</span><br><span class="line">img_test = np.random.rand(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;\n&quot;</span>, imgs[:<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n&#x6240;&#x6709;&#x56FE;&#x7247;&#x7684;&#x6807;&#x7B7E;&#x662F;&#xFF1A;\n&quot;</span>, label)</span><br></pre></td></tr></table></figure>
 <pre><code>&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;
@@ -221,6 +323,10 @@ loss = 5.231505276181342
 <li>Vectorized Implementation of SVM Loss and Gradient Update<br><a href="https://mlxai.github.io/2017/01/06/vectorized-implementation-of-svm-loss-and-gradient-update.html">https://mlxai.github.io/2017/01/06/vectorized-implementation-of-svm-loss-and-gradient-update.html</a></li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>ML</tag>
+        <tag>CV</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
