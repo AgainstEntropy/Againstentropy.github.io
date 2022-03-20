@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/14/SVM/SVM_margin.png">
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/14/SVM/loss_and_train.png">
 <meta property="article:published_time" content="2021-10-13T17:28:50.223Z">
-<meta property="article:modified_time" content="2021-11-26T13:38:32.483Z">
+<meta property="article:modified_time" content="2022-01-22T12:17:54.173Z">
 <meta property="article:author" content="Ethan Wang">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="CV">
@@ -260,7 +260,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-26 21:38:32" itemprop="dateModified" datetime="2021-11-26T21:38:32+08:00">2021-11-26</time>
+        <time title="修改时间：2022-01-22 20:17:54" itemprop="dateModified" datetime="2022-01-22T20:17:54+08:00">2022-01-22</time>
       </span>
 
   
@@ -392,6 +392,7 @@
  -->
 <h2 id="&#x6B63;&#x6587;"><a href="#&#x6B63;&#x6587;" class="headerlink" title="&#x6B63;&#x6587;"></a>&#x6B63;&#x6587;</h2><p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;SVM&#x7684;hinge_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;<code>dW</code>&#x3002;</p>
 <h3 id="&#x6570;&#x636E;"><a href="#&#x6570;&#x636E;" class="headerlink" title="&#x6570;&#x636E;"></a>&#x6570;&#x636E;</h3><h4 id="&#x751F;&#x6210;&#x6570;&#x636E;"><a href="#&#x751F;&#x6210;&#x6570;&#x636E;" class="headerlink" title="&#x751F;&#x6210;&#x6570;&#x636E;"></a>&#x751F;&#x6210;&#x6570;&#x636E;</h4><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5171;&#x6709;10&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x88AB;&#x5206;&#x4E3A;3&#x7C7B;&#x3002;&#x7528;$X_i$(<code>imgs[i](i=1,2,...,10)</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x7684;&#x6240;&#x6709;&#x50CF;&#x7D20;&#xFF0C;$y_i$(<code>labels[i]</code>)&#x8868;&#x793A;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x5BF9;&#x5E94;&#x7684;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF08;<code>labels[i]=0,1,2</code>&#xFF09;&#x3002;&#x5047;&#x8BBE;&#x6BCF;&#x5F20;&#x56FE;&#x7247;&#x7684;&#x957F;&#x548C;&#x5BBD;&#x90FD;&#x4E3A;2&#x4E2A;&#x50CF;&#x7D20;&#xFF0C;&#x6709;3&#x4E2A;&#x901A;&#x9053;&#xFF08;$\color{red}{R}\color{green}{G}\color{blue}{B}$&#xFF09;&#x3002;</p>
+<span id="more"></span>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">imgs = np.random.rand(<span class="number">10</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">labels = np.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=<span class="number">10</span>)</span><br><span class="line">img_test = np.random.rand(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;\n&quot;</span>, imgs[:<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n&#x6240;&#x6709;&#x56FE;&#x7247;&#x7684;&#x6807;&#x7B7E;&#x662F;&#xFF1A;\n&quot;</span>, labels)</span><br></pre></td></tr></table></figure>
 <pre><code>&#x524D;2&#x5F20;&#x56FE;&#x7247;&#x662F;&#xFF1A;
  [[[[0.44610755 0.50850947 0.06605838]  // &#x8FD9;&#x4E00;&#x884C;&#x4EE3;&#x8868;&#x7B2C;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#x5DE6;&#x4E0A;&#x89D2;&#x50CF;&#x7D20;&#x7684;RGB&#x6570;&#x503C;
@@ -651,7 +652,7 @@ loss = 5.231505276181342
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fas fa-code"></i>
   </span>

@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/20/CS231n-Assignment1-Softmax/loss_and_train.png">
 <meta property="og:image" content="https://againstentropy.github.io/2021/10/20/CS231n-Assignment1-Softmax/svmvssoftmax.png">
 <meta property="article:published_time" content="2021-10-20T04:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-26T13:36:10.845Z">
+<meta property="article:modified_time" content="2022-01-22T12:17:33.624Z">
 <meta property="article:author" content="Ethan Wang">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="CV">
@@ -257,7 +257,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-26 21:36:10" itemprop="dateModified" datetime="2021-11-26T21:36:10+08:00">2021-11-26</time>
+        <time title="修改时间：2022-01-22 20:17:33" itemprop="dateModified" datetime="2022-01-22T20:17:33+08:00">2022-01-22</time>
       </span>
 
   
@@ -286,7 +286,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="&#x6B63;&#x6587;"><a href="#&#x6B63;&#x6587;" class="headerlink" title="&#x6B63;&#x6587;"></a>&#x6B63;&#x6587;</h2><p>&#x5199;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#xFF0C;&#x65B9;&#x4FBF;&#x7406;&#x89E3;&#x5982;&#x4F55;&#x6C42;Softmax&#x7684;cross_entropy_loss&#x548C;&#x6743;&#x91CD;&#x77E9;&#x9635;$W$&#x7684;&#x68AF;&#x5EA6;<code>dW</code>&#x3002;</p>
-<h3 id="&#x635F;&#x5931;&#x51FD;&#x6570;"><a href="#&#x635F;&#x5931;&#x51FD;&#x6570;" class="headerlink" title="&#x635F;&#x5931;&#x51FD;&#x6570;"></a>&#x635F;&#x5931;&#x51FD;&#x6570;</h3><p>&#x9996;&#x5148;&#x9700;&#x8981;&#x660E;&#x786E;&#x7684;&#x662F;&#xFF0C;SVM&#x548C;Softmax&#x662F;&#x4E24;&#x79CD;&#x5206;&#x7C7B;&#x5668;&#xFF08;Classifier&#xFF09;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x5B83;&#x4EEC;&#x5206;&#x522B;&#x4F7F;&#x7528;&#x4E86;hinge loss&#xFF08;&#x6709;&#x65F6;&#x4E5F;&#x53EB;&#x505A;max-margin loss&#xFF09;&#x548C;cross entropy loss&#x4F5C;&#x4E3A;&#x5404;&#x81EA;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x3002;&#x4E24;&#x79CD;&#x5206;&#x7C7B;&#x5668;&#x901A;&#x8FC7;&#x4F18;&#x5316;&#x53C2;&#x6570;&#x6765;&#x51CF;&#x5C0F;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x503C;&#xFF0C;&#x6700;&#x7EC8;&#x90FD;&#x53EF;&#x4EE5;&#x8FBE;&#x5230;&#x5206;&#x7C7B;&#x7684;&#x76EE;&#x7684;&#x3002;</p>
+<h3 id="&#x635F;&#x5931;&#x51FD;&#x6570;"><a href="#&#x635F;&#x5931;&#x51FD;&#x6570;" class="headerlink" title="&#x635F;&#x5931;&#x51FD;&#x6570;"></a>&#x635F;&#x5931;&#x51FD;&#x6570;</h3><p>&#x9996;&#x5148;&#x9700;&#x8981;&#x660E;&#x786E;&#x7684;&#x662F;&#xFF0C;SVM&#x548C;Softmax&#x662F;&#x4E24;&#x79CD;&#x5206;&#x7C7B;&#x5668;&#xFF08;Classifier&#xFF09;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x5B83;&#x4EEC;&#x5206;&#x522B;&#x4F7F;&#x7528;&#x4E86;hinge loss&#xFF08;&#x6709;&#x65F6;&#x4E5F;&#x53EB;&#x505A;max-margin loss&#xFF09;&#x548C;cross entropy loss&#x4F5C;&#x4E3A;&#x5404;&#x81EA;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x3002;&#x4E24;&#x79CD;&#x5206;&#x7C7B;&#x5668;&#x901A;&#x8FC7;&#x4F18;&#x5316;&#x53C2;&#x6570;&#x6765;&#x51CF;&#x5C0F;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x503C;&#xFF0C;&#x6700;&#x7EC8;&#x90FD;&#x53EF;&#x4EE5;&#x8FBE;&#x5230;&#x5206;&#x7C7B;&#x7684;&#x76EE;&#x7684;&#x3002;<br><span id="more"></span></p>
 <p>&#x4E0E;SVM&#x7684;<em>hinge loss</em>&#x4E0D;&#x540C;&#xFF0C;Softmax&#x91C7;&#x7528;<em>cross entropy loss</em>&#x6765;&#x8BC4;&#x4F30;&#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x7684;&#x597D;&#x574F;&#x3002;&#x5BF9;&#x4E8E;&#x4E24;&#x4E2A;&#x7ED9;&#x5B9A;&#x7684;&#x5206;&#x5E03;$p(c)$&#x548C;$q(c)$&#xFF0C;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;<em>cross entropy</em>&#xFF08;&#x4EA4;&#x53C9;&#x71B5;&#xFF09;&#x4E3A;&#xFF1A;<br><!-- $$ --><br>\begin{equation}<br>H(p,q) = - \sum_c p(c) \log q(c)<br>\end{equation}<br><!-- $$ --><br><div class="note info no-icon"><p>&#x6CE8;&#xFF1A;&#x5982;&#x4E0D;&#x52A0;&#x8BF4;&#x660E;&#xFF0C;blog&#x4E2D;&#x7684;&#x6240;&#x6709;<em>log</em>&#x5747;&#x6307;&#x81EA;&#x7136;&#x5BF9;&#x6570;&#xFF0C;&#x5373; <em>$log \equiv log_e=ln$</em>&#x3002;</p>
 </div></p>
 <p>&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x8BC4;&#x4F30;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x88AB;&#x5408;&#x7406;&#x5206;&#x7C7B;&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x771F;&#x5B9E;&#x5206;&#x5E03;$p_i$&#x5E94;&#x5F53;&#x662F;&#x4E00;&#x4E2A;&#x5F62;&#x5982;$[0, \ldots 1, \ldots, 0]$&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x5176;&#x4E2D;&#x53EA;&#x6709;$y_i$&#x5904;&#x4E3A;1&#xFF0C;&#x5176;&#x4ED6;&#x4F4D;&#x7F6E;&#x90FD;&#x4E3A;0&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x7684;&#x771F;&#x5B9E;&#x60C5;&#x51B5;&#x662F;&#x201C;&#x6709;100%&#x7684;&#x6982;&#x7387;&#x5904;&#x4E8E;&#x7B2C;$y_i$&#x7C7B;&#x201D;&#xFF0C;&#x4E5F;&#x5373;&#x4E00;&#x4E2A;$\delta$&#x5206;&#x5E03;&#x3002;&#x8981;&#x8BA1;&#x7B97;&#x4EA4;&#x53C9;&#x71B5;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x8FD8;&#x9700;&#x8981;&#x6C42;&#x51FA;&#x5F53;&#x524D;&#x7684;&#x5206;&#x5E03;$q_i$&#x3002;&#x6839;&#x636E;<a href="https://againstentropy.github.io/2021/10/14/SVM/#&#x635F;&#x5931;&#x51FD;&#x6570;">SVM</a>&#x7BC7;&#x4E2D;&#x5F97;&#x5230;&#x7684;&#x5F97;&#x5206;&#x77E9;&#x9635;$S$&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x7B2C;$i$&#x5F20;&#x56FE;&#x7247;&#x5728;&#x5404;&#x4E2A;&#x5206;&#x7C7B;&#x4E0A;&#x7684;&#x5F97;&#x5206;$S_i$&#x5B9A;&#x91CF;&#x201C;&#x4F30;&#x8BA1;&#x201D;&#x51FA;$q_i$&#xFF0C;&#x5373;&#xFF1A;<br><!-- $$ --><br>\begin{equation}<br>q_i(c) = \frac{e^{S_{i c}}}{\sum_c e^{S_{i c}}}<br>\end{equation}<br><!-- $$ --><br>&#x8FD9;&#x91CC;$c$&#x7528;&#x6765;&#x6807;&#x8BB0;&#x5404;&#x4E2A;&#x5206;&#x7C7B;&#x3002;&#x8FD9;&#x79CD;&#x6982;&#x7387;&#x8BE0;&#x91CA;&#x975E;&#x5E38;&#x7C7B;&#x4F3C;&#x4E8E;&#x7EDF;&#x8BA1;&#x7269;&#x7406;&#x4E2D;<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Partition_function">&#x914D;&#x5206;&#x51FD;&#x6570;</a>&#x7684;&#x5F62;&#x5F0F; &#x2014;&#x2014; $e$&#x6307;&#x6570;&#x4FDD;&#x8BC1;&#x4E86;&#x6982;&#x7387;&#x4E3A;&#x6B63;&#x503C;&#xFF0C;&#x5206;&#x6BCD;&#x4FDD;&#x8BC1;&#x4E86;&#x6982;&#x7387;&#x5F52;&#x4E00;&#x5316;&#xFF0C;&#x5373;$\sum_c q_i(c) = 1$&#x3002;</p>
@@ -365,7 +365,7 @@ loss = 11.887700678860678
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fas fa-code"></i>
   </span>
