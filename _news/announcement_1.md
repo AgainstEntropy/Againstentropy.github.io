@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2022-7-15
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+Graduate from the department of Physics of Fudan University as an Honor Graduate! :sparkles:

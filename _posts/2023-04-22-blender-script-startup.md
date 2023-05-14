@@ -6,8 +6,10 @@ description: this is a start-up tutorial for scripting in Blender
 tags: Blender Python
 categories: tutorials
 related_posts: false
+giscus_comments: true
 toc:
   sidebar: left
+thumbnail: assets/img/posts/2023-04-22/tooltip.png
 ---
 
 In this tutorial you can get some basic knowledge of writing scripts in Blender. **You don't need to have any pre-requisites other than some basic Python syntax.** Our goal is pretty straightforward as following:

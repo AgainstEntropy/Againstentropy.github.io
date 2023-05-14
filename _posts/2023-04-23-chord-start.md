@@ -6,6 +6,10 @@ description: this is a record of building an open-source libruary of drawing cho
 tags: Vis Python
 categories: projects open-sources
 related_posts: false
+giscus_comments: true
+toc:
+  sidebar: left
+thumbnail: assets/img/posts/2023-04-23/pi-chord-white.png
 ---
 
 ## Motivation
