@@ -1,0 +1,23 @@
+titles:
+  about: about
+  blog: blog
+  cv: cv
+  news: news
+  projects: projects
+  publications: publications
+  repositories: repositories
+  teaching: teaching
+  submenus: more
+  unk: page not found
+
+blog_name: AgainstEntropy's blog
+blog_nav_title: blog
+
+projects:
+  titles:
+    project1: Project 1
+    project2: Project 2
+    project3: Project 3
+    project4: Project 4
+    project5: Project 5
+    project6: Project 6
