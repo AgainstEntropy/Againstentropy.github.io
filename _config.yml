@@ -2,12 +2,11 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-# title: Yihao Wang's Homepage # the website title
-title: blank # (if blank, full name will be used instead)
-first_name: Yihao
-middle_name: 
-last_name: Wang
-email: yihaowang18@fudan.edu.cn
+title: blank # the website title (if blank, full name will be used instead)
+first_name: You
+middle_name: R.
+last_name: Name
+email: you@example.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -17,12 +16,10 @@ footer_text: >
 keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-# icon: ⚛️  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
-icon: favicon_io/favicon.ico  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: ⚛️  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://againstentropy.github.io # the base hostname & protocol for your site
-# baseurl: /myWebsite # the subpath of your site, e.g. /blog/
-baseurl:  # the subpath of your site, e.g. /blog/
+url: https://alshedivat.github.io # the base hostname & protocol for your site
+baseurl: /al-folio # the subpath of your site, e.g. /blog/
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 
@@ -48,7 +45,7 @@ repo_trophies:
 # will use title and url fields
 # Take a look to https://github.com/jekyll/jekyll-feed for more customization
 
-rss_icon: false
+rss_icon: true
 
 # -----------------------------------------------------------------------------
 # Layout
@@ -74,7 +71,7 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: AgainstEntropy # your GitHub user name
+github_username: # your GitHub user name
 gitlab_username: # your GitLab user name
 twitter_username: # your Twitter handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
@@ -87,8 +84,10 @@ orcid_id: # your ORCID ID
 medium_username: # your Medium username
 quora_username: # your Quora username
 publons_id: # your ID on Publons
+lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 osf_id: # your OSF ID
 research_gate_profile: # your profile on ResearchGate
+scopus_id: # your profile on Scopus
 blogger_url: # your blogger URL
 work_url: # work page URL
 keybase_username: # your keybase user name
@@ -123,9 +122,9 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: AgainstEntropy's blog # blog_name will be displayed in your blog page
+blog_name: al-folio # blog_name will be displayed in your blog page
 blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
-# blog_description: a simple whitespace theme for academics
+blog_description: a simple whitespace theme for academics
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -157,7 +156,7 @@ disqus_shortname: al-folio # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
-# If you have blog posts published on medium.com or other exteranl sources,
+# If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
 external_sources:
   - name: medium.com
@@ -177,8 +176,15 @@ collections:
     output: true
     permalink: /projects/:path/
 
-news_scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-news_limit: 5 # leave blank to include all the news in the `_news` folder
+announcements:
+  enabled: true
+  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
+  limit: 5 # leave blank to include all the news in the `_news` folder
+
+latest_posts:
+  enabled: true
+  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
+  limit: 3 # leave blank to include all the blog posts
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -216,18 +222,19 @@ plugins:
   - jekyll-email-protect
   - jekyll-feed
   - jekyll-imagemagick
+  - jekyll-link-attributes
   - jekyll-minifier
   - jekyll-paginate-v2
   - jekyll/scholar
   - jekyll-sitemap
-  - jekyll-link-attributes
+  - jekyll-toc
   - jekyll-twitter-plugin
   - jemoji
 
 # Sitemap settings
 defaults:
   - scope:
-      path: "assets/**/*.*"
+      path: "assets"
     values:
       sitemap: false
 
@@ -255,7 +262,7 @@ jekyll-archives:
     tag: '/blog/tag/:name/'
     category: '/blog/category/:name/'
 
-display_tags: ['Deep Learning', 'CV', 'Blender', 'Python', 'Vis', 'formatting', 'images', 'links', 'math', 'code'] # this tags will be dispalyed on the front page of your blog
+display_tags: ['formatting', 'images', 'links', 'math', 'code'] # these tags will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
@@ -263,8 +270,8 @@ display_tags: ['Deep Learning', 'CV', 'Blender', 'Python', 'Vis', 'formatting', 
 
 scholar:
 
-  last_name: [Yihao]
-  first_name: [Wang]
+  last_name: [Einstein]
+  first_name: [Albert, A.]
 
   style: apa
   locale: en
@@ -286,7 +293,7 @@ scholar:
 
   query: "@*"
 
-badges: # Display different badges for your pulications
+badges: # Display different badges for your publications
   altmetric_badge: true # Altmetric badge (https://www.altmetric.com/products/altmetric-badges/)
   dimensions_badge: true # Dimensions badge (https://badge.dimensions.ai/)
 
@@ -315,7 +322,7 @@ external_links:
 # -----------------------------------------------------------------------------
 
 imagemagick:
-  enabled: true # enables responsive images for your site (recomended, see https://github.com/alshedivat/al-folio/issues/537)
+  enabled: true # enables responsive images for your site (recommended, see https://github.com/alshedivat/al-folio/issues/537)
   widths:
     - 480
     - 800
@@ -347,12 +354,12 @@ enable_google_analytics:    false  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
 enable_google_verification: false  # enables google site verification
 enable_bing_verification:   false  # enables bing site verification
-enable_masonry:             true   # enables automatic project cards arangement
+enable_masonry:             true   # enables automatic project cards arrangement
 enable_math:                true   # enables math typesetting (uses MathJax)
 enable_tooltips:            false  # enables automatic tooltip links generated
                                    # for each section titles on pages and posts
 enable_darkmode:            true   # enables switching between light/dark modes
-enable_navbar_social:       true   # enables displaying social links in the
+enable_navbar_social:       false  # enables displaying social links in the
                                    # navbar on the about page
 enable_project_categories:  true   # enables categorization of projects into
                                    # multiple categories
