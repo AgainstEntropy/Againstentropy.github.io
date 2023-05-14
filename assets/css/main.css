@@ -7,11 +7,12 @@
  ******************************************************************************/
 :root {
   --global-bg-color: #ffffff;
-  --global-code-bg-color: rgba(0, 118, 223, 0.05);
+  --global-code-bg-color: rgba(181, 9, 172, 0.05);
   --global-text-color: #000000;
   --global-text-color-light: #828282;
-  --global-theme-color: #0076df;
-  --global-hover-color: #0076df;
+  --global-theme-color: #B509AC;
+  --global-hover-color: #B509AC;
+  --global-hover-text-color: #ffffff;
   --global-footer-bg-color: #1C1C1D;
   --global-footer-text-color: #e8e8e8;
   --global-footer-link-color: #ffffff;
@@ -41,6 +42,7 @@ html[data-theme=dark] {
   --global-text-color-light: #e8e8e8;
   --global-theme-color: #2698BA;
   --global-hover-color: #2698BA;
+  --global-hover-text-color: #ffffff;
   --global-footer-bg-color: #e8e8e8;
   --global-footer-text-color: #1C1C1D;
   --global-footer-link-color: #000000;
@@ -121,10 +123,10 @@ hr {
 
 table td,
 table th {
-  color: var(--global-text-color);
-}
-table td {
   font-size: 1rem;
+}
+table th {
+  font-weight: bold;
 }
 
 a,
@@ -423,6 +425,10 @@ footer.sticky-bottom {
   color: var(--global-text-color-light);
 }
 
+.post-title mjx-container[jax=CHTML][display=true] {
+  display: unset;
+}
+
 .post-list {
   margin: 0;
   margin-bottom: 40px;
@@ -451,6 +457,9 @@ footer.sticky-bottom {
 }
 .post-list li a:hover {
   color: var(--global-theme-color);
+}
+.post-list li mjx-container[jax=CHTML][display=true] {
+  display: unset;
 }
 
 .pagination .page-item .page-link {
@@ -590,16 +599,20 @@ footer.sticky-bottom {
   padding-right: 1rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  margin-left: 0;
 }
 .publications ol.bibliography li .links a.btn:hover {
   color: var(--global-theme-color);
   border-color: var(--global-theme-color);
 }
+.publications ol.bibliography li .badges {
+  padding-bottom: 0.5rem;
+}
 .publications ol.bibliography li .badges span {
   display: inline-block;
   color: #000000;
   height: 100%;
-  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   vertical-align: middle;
 }
 .publications ol.bibliography li .badges span:hover {
@@ -746,32 +759,97 @@ progress::-moz-progress-bar {
   height: inherit;
 }
 
-pre {
-  padding: 8px 12px;
+/* Copy button */
+.code-display-wrapper {
   position: relative;
-  /* Copy code to clipboard button */
 }
-pre .copy {
+.code-display-wrapper .copy {
   background: var(--global-card-bg-color);
   border-color: var(--global-bg-color);
   border-radius: 0.3rem;
-  border-style: solid;
+  border-style: none;
   color: var(--global-text-color);
   font-size: medium;
   opacity: 0;
   position: absolute;
-  right: 0.25rem;
-  top: 0.25rem;
+  right: 0.5rem;
+  top: 0.5rem;
 }
-pre .copy:active, pre .copy:focus, pre .copy:hover {
-  color: var(--global-hover-color);
-  opacity: 1;
-}
-pre:active .copy, pre:focus .copy, pre:hover .copy {
+.code-display-wrapper:active .copy, .code-display-wrapper:focus .copy, .code-display-wrapper:hover .copy {
   color: var(--global-hover-color);
   opacity: 1;
 }
 
+.btn-group.dropdown .btn {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.btn-group.dropdown .btn-secondary.dropdown-toggle {
+  border: 1px solid var(--global-divider-color);
+}
+.btn-group.dropdown .btn-secondary.dropdown-toggle .page-size {
+  color: inherit;
+}
+.btn-group.dropdown .btn-secondary.dropdown-toggle:not(.active) {
+  background-color: var(--global-bg-color) !important;
+  color: var(--global-text-color);
+}
+.btn-group.dropdown .btn-secondary.dropdown-toggle:hover {
+  background-color: var(--global-hover-color) !important;
+  color: var(--global-hover-text-color) !important;
+}
+.btn-group.dropdown .dropdown-menu {
+  background-color: var(--global-bg-color);
+}
+.btn-group.dropdown .dropdown-item {
+  background-color: var(--global-bg-color);
+  color: var(--global-text-color);
+}
+.btn-group.dropdown .dropdown-item:hover {
+  color: var(--global-hover-color);
+}
+.btn-group.dropdown .dropdown-item.active, .btn-group.dropdown .dropdown-item:active {
+  background-color: var(--global-hover-color);
+  color: var(--global-hover-text-color) !important;
+}
+.btn-group.dropdown .dropdown-item.active:hover, .btn-group.dropdown .dropdown-item:active:hover {
+  color: var(--global-hover-text-color);
+}
+
+/* Table of Contents */
+nav[data-toggle=toc] {
+  top: 5rem;
+}
+nav[data-toggle=toc] .nav .nav > li > a {
+  font-size: 0.75rem;
+}
+nav[data-toggle=toc] .nav > li > a {
+  color: var(--global-text-color);
+  font-size: 0.75rem;
+}
+nav[data-toggle=toc] .nav > li > a:hover {
+  color: var(--global-hover-color);
+  border-left-color: var(--global-hover-color);
+}
+nav[data-toggle=toc] .nav-link.active {
+  color: var(--global-theme-color);
+  border-left-color: var(--global-theme-color);
+  font-size: 0.75rem;
+}
+nav[data-toggle=toc] .nav-link.active:hover {
+  color: var(--global-hover-color);
+  border-left-color: var(--global-hover-color);
+}
+
+/* small screens */
+@media (max-width: 576px) {
+  /* override stickyness so that the navigation does not follow scrolling */
+  nav[data-toggle=toc] {
+    visibility: hidden;
+    height: 0;
+    top: 0;
+  }
+}
 /*******************************************************************************
  * Style overrides for distill blog posts.
  ******************************************************************************/
@@ -807,6 +885,26 @@ d-article a:hover {
 }
 d-article b i {
   display: inline;
+}
+d-article details {
+  color: var(--global-text-color);
+  background-color: var(--global-code-bg-color);
+  margin-top: 0;
+  padding: 8px 12px;
+  position: relative;
+  border-radius: 6px;
+  display: block;
+  margin-bottom: 20px;
+  grid-column: text;
+  overflow: auto;
+  max-width: 100%;
+}
+d-article details summary {
+  color: var(--global-theme-color);
+}
+d-article details p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 d-article d-contents {
   align-self: start;
