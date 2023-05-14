@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>How to draw chord plots in Python | Yihao  Wang</title>
+    <meta name="author" content="Yihao  Wang">
+    <meta name="description" content="this is a record of building an open-source libruary of drawing chord plots in Python">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="/assets/img/favicon_io/favicon.ico">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://againstentropy.github.io/blog/2023/chord-start/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Yihao </span>Wang</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/projects/">projects</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/repositories/">repositories</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">How to draw chord plots in Python</h1>
+    <p class="post-meta">April 23, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+        ·  
+        <a href="/blog/tag/vis">
+          <i class="fas fa-hashtag fa-sm"></i> Vis</a>  
+          <a href="/blog/tag/python">
+          <i class="fas fa-hashtag fa-sm"></i> Python</a>  
+          
+        ·  
+        <a href="/blog/category/projects">
+          <i class="fas fa-tag fa-sm"></i> projects</a>  
+          <a href="/blog/category/open-sources">
+          <i class="fas fa-tag fa-sm"></i> open-sources</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="motivation">Motivation</h2>
+
+<p>This project is inspired by <a href="https://zhuanlan.zhihu.com/p/570940302" rel="external nofollow noopener" target="_blank">a chord visualization</a> of $\pi$ online, which is implemented with MATLAB:</p>
+
+<p>&lt;img src=”../assets/img/posts/2023-04-23/pi-chord-white.png” width = 49% /&gt;
+&lt;img src=”../assets/img/posts/2023-04-23/beautiful-chord.png” width = 49% /&gt;</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/pi-chord-white-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/pi-chord-white-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/pi-chord-white-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/pi-chord-white.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/beautiful-chord-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/beautiful-chord-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/beautiful-chord-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/beautiful-chord.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<p>Really beauiful! right? Therefore, I decided to reproduce the amazing visual effect of this plot. The first thing is to determine the technical roadmap. I searched online for existing libraries and tutorials but the most related are as below:</p>
+
+<ol>
+  <li>A libruary called <a href="https://github.com/ponnhide/pyCircos" rel="external nofollow noopener" target="_blank">pyCircos</a>
+</li>
+  <li>A <a href="https://zhuanlan.zhihu.com/p/56744904" rel="external nofollow noopener" target="_blank">post</a> on zhiuhu</li>
+</ol>
+
+<p>Their visual effect are … not exactly what I want. Therefore! I decided to build a Python library for drawing chord plots and try to record everything in detail during this project.</p>
+
+<p>Note there are two different types of chord plots. Based on their visual characteristics, I will called them <strong>instance chord</strong> and <strong>proportion chord</strong>. The first part of this post is an implementation of instance chord, just as figures above.</p>
+
+<h2 id="draw-some-curves">Draw some curves</h2>
+
+<h3 id="explore-in-the-polar-coordinates">Explore in the polar coordinates</h3>
+
+<p>It seems intuitive to draw a chord plot in the polar coordinates, so I first tried some official example codes on the matplotlib website:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s">'projection'</span><span class="p">:</span> <span class="s">'polar'</span><span class="p">})</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_rmax</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_rticks</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c1"># Less radial ticks
+</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_rlabel_position</span><span class="p">(</span><span class="o">-</span><span class="mf">22.5</span><span class="p">)</span>  <span class="c1"># Move radial labels away from plotted line
+</span><span class="n">ax</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="s">"A line plot on a polar axis"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">'bottom'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../assets/img/posts/2023-04-23/polar.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/polar-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/polar-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/polar-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/polar.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<h3 id="draw-bezier-curves">Draw bezier curves</h3>
+
+<p>To draw those smooth curves, I guess bezier curve is a great choice. So I tried another <a href="https://matplotlib.org/stable/gallery/shapes_and_collections/quad_bezier.html" rel="external nofollow noopener" target="_blank">example</a> from the official doc of matplotlib to draw Bezier Curves:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.path</span> <span class="k">as</span> <span class="n">mpath</span>
+<span class="kn">import</span> <span class="n">matplotlib.patches</span> <span class="k">as</span> <span class="n">mpatches</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">Path</span> <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="n">Path</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">()</span>
+<span class="n">pp1</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">PathPatch</span><span class="p">(</span>
+    <span class="nc">Path</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
+         <span class="p">[</span><span class="n">Path</span><span class="p">.</span><span class="n">MOVETO</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">CLOSEPOLY</span><span class="p">]),</span>
+    <span class="n">fc</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">.</span><span class="n">transData</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">add_patch</span><span class="p">(</span><span class="n">pp1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([</span><span class="mf">0.75</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">],</span> <span class="s">"ro"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="s">'The red point should be on the path'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../assets/img/posts/2023-04-23/sphx_glr_quad_bezier_001_2_0x.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/sphx_glr_quad_bezier_001_2_0x-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/sphx_glr_quad_bezier_001_2_0x-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/sphx_glr_quad_bezier_001_2_0x-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/sphx_glr_quad_bezier_001_2_0x.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<p>Then I referred to the implementation of <a href="https://github.com/ponnhide/pyCircos" rel="external nofollow noopener" target="_blank">pyCircos</a>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">chord_plot</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">start_list</span><span class="p">,</span> <span class="n">end_list</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="s">"""
+    Visualize interrelationships between data.
+    ...
+    """</span>
+    <span class="n">garc_id1</span> <span class="o">=</span> <span class="n">start_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">garc_id2</span> <span class="o">=</span> <span class="n">end_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="mi">0</span> 
+
+    <span class="n">start1</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_garc_dict</span><span class="p">[</span><span class="n">garc_id1</span><span class="p">].</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">end1</span>   <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_garc_dict</span><span class="p">[</span><span class="n">garc_id1</span><span class="p">].</span><span class="n">coordinates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+    <span class="n">size1</span>  <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_garc_dict</span><span class="p">[</span><span class="n">garc_id1</span><span class="p">].</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">sstart</span> <span class="o">=</span> <span class="n">start1</span> <span class="o">+</span> <span class="p">((</span><span class="n">end1</span><span class="o">-</span><span class="n">start1</span><span class="p">)</span> <span class="o">*</span> <span class="n">start_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">size1</span><span class="p">)</span> 
+    <span class="n">send</span>   <span class="o">=</span> <span class="n">start1</span> <span class="o">+</span> <span class="p">((</span><span class="n">end1</span><span class="o">-</span><span class="n">start1</span><span class="p">)</span> <span class="o">*</span> <span class="n">start_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">size1</span><span class="p">)</span>
+    <span class="n">stop</span>   <span class="o">=</span> <span class="n">start_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> 
+    
+    <span class="n">start2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_garc_dict</span><span class="p">[</span><span class="n">garc_id2</span><span class="p">].</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">end2</span>   <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_garc_dict</span><span class="p">[</span><span class="n">garc_id2</span><span class="p">].</span><span class="n">coordinates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+    <span class="n">size2</span>  <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_garc_dict</span><span class="p">[</span><span class="n">garc_id2</span><span class="p">].</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ostart</span> <span class="o">=</span> <span class="n">start2</span> <span class="o">+</span> <span class="p">((</span><span class="n">end2</span><span class="o">-</span><span class="n">start2</span><span class="p">)</span> <span class="o">*</span> <span class="n">end_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">size2</span><span class="p">)</span> 
+    <span class="n">oend</span>   <span class="o">=</span> <span class="n">start2</span> <span class="o">+</span> <span class="p">((</span><span class="n">end2</span><span class="o">-</span><span class="n">start2</span><span class="p">)</span> <span class="o">*</span> <span class="n">end_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">size2</span><span class="p">)</span>
+    <span class="n">etop</span>   <span class="o">=</span> <span class="n">end_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> 
+
+    <span class="k">if</span> <span class="n">facecolor</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">facecolor</span> <span class="o">=</span> <span class="n">Gcircle</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">color_cycle</span> <span class="o">%</span> <span class="nf">len</span><span class="p">(</span><span class="n">Gcircle</span><span class="p">.</span><span class="n">colors</span><span class="p">)]</span> <span class="o">+</span> <span class="s">"80"</span> 
+        <span class="n">self</span><span class="p">.</span><span class="n">color_cycle</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="n">z1</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">stop</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="nf">abs</span><span class="p">((</span><span class="n">send</span><span class="o">-</span><span class="n">sstart</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">))</span> 
+    <span class="n">z2</span> <span class="o">=</span> <span class="n">etop</span> <span class="o">-</span> <span class="n">etop</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="nf">abs</span><span class="p">((</span><span class="n">oend</span><span class="o">-</span><span class="n">ostart</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">))</span> 
+    <span class="k">if</span> <span class="n">sstart</span> <span class="o">==</span> <span class="n">ostart</span><span class="p">:</span> 
+        <span class="k">pass</span> 
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Path</span>      <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="n">Path</span>
+        <span class="n">path_data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">Path</span><span class="p">.</span><span class="n">MOVETO</span><span class="p">,</span>  <span class="p">(</span><span class="n">sstart</span><span class="p">,</span> <span class="n">stop</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">(</span><span class="n">sstart</span><span class="p">,</span> <span class="n">center</span><span class="p">)),</span>     
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">(</span><span class="n">oend</span><span class="p">,</span>   <span class="n">etop</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">((</span><span class="n">ostart</span><span class="o">+</span><span class="n">oend</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">etop</span><span class="o">+</span><span class="n">z2</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">(</span><span class="n">ostart</span><span class="p">,</span> <span class="n">etop</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">(</span><span class="n">ostart</span><span class="p">,</span> <span class="n">center</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">(</span><span class="n">send</span><span class="p">,</span>   <span class="n">stop</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">((</span><span class="n">sstart</span><span class="o">+</span><span class="n">send</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">stop</span><span class="o">+</span><span class="n">z1</span><span class="p">)),</span>
+                        <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span>  <span class="p">(</span><span class="n">sstart</span><span class="p">,</span> <span class="n">stop</span><span class="p">)),</span>
+                    <span class="p">]</span>
+        <span class="n">codes</span><span class="p">,</span> <span class="n">verts</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">zip</span><span class="p">(</span><span class="o">*</span><span class="n">path_data</span><span class="p">))</span> 
+        <span class="n">path</span>  <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="nc">Path</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">codes</span><span class="p">)</span>
+        <span class="n">patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">PathPatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">facecolor</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">add_patch</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>I notice that the <code class="language-plaintext highlighter-rouge">path_data</code> includes some points using the <code class="language-plaintext highlighter-rouge">center</code> variable defined as <code class="language-plaintext highlighter-rouge">0</code>, I guess I can directly use the origin as the control point. I can finally draw my first Bezier Curve in a polar axis using the code below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">matplotlib.path</span>    <span class="k">as</span> <span class="n">mpath</span>
+<span class="kn">import</span> <span class="n">matplotlib.patches</span> <span class="k">as</span> <span class="n">mpatches</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># (0, 22.5, 45, 67.5, ...)
+</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s">'projection'</span><span class="p">:</span> <span class="s">'polar'</span><span class="p">})</span>
+<span class="n">Path</span> <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="n">Path</span>
+<span class="n">path_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">MOVETO</span><span class="p">,</span> <span class="p">(</span><span class="n">degrees</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">)),</span>
+    <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span> <span class="p">(</span><span class="n">degrees</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span> <span class="p">(</span><span class="n">degrees</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">r</span><span class="p">)),</span>
+<span class="p">]</span>
+<span class="n">codes</span><span class="p">,</span> <span class="n">verts</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="o">*</span><span class="n">path_data</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="nc">Path</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">codes</span><span class="p">)</span>
+<span class="n">patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">PathPatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'none'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">add_patch</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_rlabel_position</span><span class="p">(</span><span class="o">-</span><span class="mf">22.5</span><span class="p">)</span>  <span class="c1"># Move radial labels away from plotted line
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../assets/img/posts/2023-04-23/first-bezier.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/first-bezier-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/first-bezier-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/first-bezier-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/first-bezier.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<p>We already has a nice visualization here. Now it’s time to add some styles and elements to the curve. Following XHS, we at least need to:</p>
+
+<ol>
+  <li>add two small nodes to the ends of the curve</li>
+  <li>apply a gradient color to the curve</li>
+</ol>
+
+<p>To add end nodes, we only need to add two lines of codes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">degrees</span><span class="p">[:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="use-color-gradient">Use color gradient</h2>
+
+<p>To apply a gradient color, there are a lot of works to do. Since we need to use <code class="language-plaintext highlighter-rouge">matplotlib.collections.LineCollection</code> to apply different colors to different segment of the curve, all the segments are requiered with explicitly performing  bezier interpolation in Cartesian coordinates. Thus, I first repeat the above steps using Cartesian coordinates.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># (0, 22.5, 45, 67.5, ...)
+</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># convert from polar coordinates to cartesian coordinates
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">degrees</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">degrees</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+
+<span class="c1"># compute the quadratic Bezier curve
+</span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># split the curve into segments
+</span><span class="n">route</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (T, 2)
+</span><span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">route</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># (0, 1, 2, ..., N-1)
+</span><span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nc">Normalize</span><span class="p">(</span><span class="n">idxs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">idxs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">([</span><span class="n">route</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">route</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="p">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s">'viridis'</span><span class="p">]</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="nc">LineCollection</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">lc</span><span class="p">.</span><span class="nf">set_array</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
+<span class="n">lc</span><span class="p">.</span><span class="nf">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">add_collection</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span>
+
+<span class="c1"># draw the outer circle
+</span><span class="n">circle</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+
+<span class="c1"># draw two ends
+</span><span class="n">cmap_ends</span> <span class="o">=</span> <span class="nf">cmap</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cmap_ends</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../assets/img/posts/2023-04-23/cartesian.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/cartesian-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/cartesian-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/cartesian-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/cartesian.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<p>Here I use the quadratic Bezier curves for computational efficiency. And since I use the origin as the control point ($x_1 = 0$), the formulation can be simplified as follows:</p>
+
+\[x(t) = (1-t)^2 x_0 + 2t(1-t) x_1 + t^2 x_2 = (1-t)^2 x_0 + t^2 x_2\]
+
+<h3 id="customize-colors">Customize colors</h3>
+
+<p>Now I’d like to apply custom color gradients to the curve. Considering that the chord diagram is composed of many curves pointing from one color to another, I first attempted to interpolate between two given colors, such as blue and red. Thanks to <code class="language-plaintext highlighter-rouge">matplotlib.colors.LinearSegmentedColormap</code>, I can directly use two colors to create a colormap. The only thing I need to do is replace the <code class="language-plaintext highlighter-rouge">cmap</code> with the following:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># R -&gt; B
+</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="s">'RedBlue'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>which yields below:</p>
+
+<p><img src="../assets/img/posts/2023-04-23/RedBlue.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/RedBlue-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/RedBlue-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/RedBlue-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/RedBlue.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<p>The <code class="language-plaintext highlighter-rouge">colors</code> argument fed to <code class="language-plaintext highlighter-rouge">from_list</code> method is a list of colors, whose elements can be either tuples and strings indicating colors. An example of using strings is as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">"darkorange"</span><span class="p">,</span> <span class="s">"gold"</span><span class="p">,</span> <span class="s">"lawngreen"</span><span class="p">,</span> <span class="s">"lightseagreen"</span><span class="p">]</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="s">'AGreatCmap'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>which yields below:</p>
+
+<p><img src="../assets/img/posts/2023-04-23/A-great-cmap.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/A-great-cmap-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/A-great-cmap-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/A-great-cmap-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/A-great-cmap.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<h2 id="functionality-encapsulation">Functionality Encapsulation</h2>
+
+<p>Since I already have the basic functionality of drawing a curve with given coordinates and colors, it’s a good choice to wrap them into a class. To unify the designation, I will call the start point <strong>source</strong> and the end point <strong>target</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span>  <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">matplotlib.patches</span> <span class="k">as</span> <span class="n">mpatches</span>
+<span class="kn">from</span> <span class="n">matplotlib.collections</span> <span class="kn">import</span> <span class="n">LineCollection</span><span class="p">,</span> <span class="n">PathCollection</span>
+<span class="kn">from</span> <span class="n">matplotlib.colors</span> <span class="kn">import</span> <span class="n">Colormap</span><span class="p">,</span> <span class="n">LinearSegmentedColormap</span>
+
+<span class="n">CmapLike</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">LinearSegmentedColormap</span><span class="p">,</span> <span class="n">Colormap</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Chord</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
+                 <span class="n">use_outer_circle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">divisions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">lw</span> <span class="o">=</span> <span class="n">linewidth</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fig</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">use_outer_circle</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">draw_circle</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">_prepare_t</span><span class="p">(</span><span class="n">divisions</span><span class="p">)</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
+        <span class="n">lim</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">((</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span> <span class="o">*</span> <span class="n">r</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">lim</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">*</span><span class="n">lim</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_prepare_t</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">divisions</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">divsions</span> <span class="o">=</span> <span class="n">divisions</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">divisions</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">T2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">get_cmap</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]):</span>
+        <span class="k">return</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="s">'my_cmap'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">divsions</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_curve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">src_tgt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> 
+                  <span class="n">cmap</span><span class="p">:</span> <span class="n">CmapLike</span><span class="p">):</span>
+        <span class="c1"># polar to cartesian
+</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">src_tgt</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">src_tgt</span><span class="p">)</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># compute the quadratic Bezier curve
+</span>        <span class="n">XY</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">T2</span> <span class="o">@</span> <span class="n">xy</span>  <span class="c1"># (T, 2) @ (2, 2) -&gt; (T, 2)
+</span>
+        <span class="c1"># split the curve into segments
+</span>        <span class="n">segments</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">([</span><span class="n">XY</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">XY</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">XY</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># (0, 1, 2, ..., T-1)
+</span>        <span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nc">Normalize</span><span class="p">(</span><span class="n">idxs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">idxs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">lc</span> <span class="o">=</span> <span class="nc">LineCollection</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">lw</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">antialiaseds</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">lc</span><span class="p">.</span><span class="nf">set_array</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">add_collection</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span>
+
+        <span class="c1"># draw two ends
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">xy</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="nf">cmap</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]))</span>
+    
+    <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># draw the outer circle
+</span>        <span class="n">circle</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">self</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove_curves</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="n">collections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="n">LineCollection</span><span class="p">,</span> <span class="n">PathCollection</span><span class="p">]:</span>
+                <span class="n">c</span><span class="p">.</span><span class="nf">remove</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fig</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">get_fig</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">fig</span>
+</code></pre></div></div>
+
+<p>Now it’s much more handy to draw a chord curves:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="nc">Chord</span><span class="p">()</span>
+<span class="n">graph</span><span class="p">.</span><span class="nf">remove_curves</span><span class="p">()</span>
+
+<span class="n">cmap1</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="nf">get_cmap</span><span class="p">([</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'blue'</span><span class="p">])</span>
+<span class="n">graph</span><span class="p">.</span><span class="nf">add_curve</span><span class="p">(</span><span class="n">start_end</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">)</span>
+
+<span class="n">cmap2</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="nf">get_cmap</span><span class="p">([</span><span class="s">'green'</span><span class="p">,</span> <span class="s">'gold'</span><span class="p">])</span>
+<span class="n">graph</span><span class="p">.</span><span class="nf">add_curve</span><span class="p">(</span><span class="n">start_end</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">((</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">210</span><span class="p">))</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">)</span>
+
+<span class="n">graph</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../assets/img/posts/2023-04-23/encapsulation.png" alt="script-view.png"></p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/posts/2023-04-23/encapsulation-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/posts/2023-04-23/encapsulation-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/posts/2023-04-23/encapsulation-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/posts/2023-04-23/encapsulation.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<p>Note that I have made some optimizations in calculating the Bessel curves, hoping to speed up the drawing when there are much more curves in the graph.</p>
+
+<h2 id="position-and-color-encoding">Position and color encoding</h2>
+
+<p>Now I have implemented the fundamental component function of the whole project. The next step is to assign the right position and color to the given data. I will use $\pi$ in the test time. Each curve in the figure indicates that there exist two adjacent numbers in $\pi$, where the former is the number at the starting point and the latter is the number at the end point. I get the irst 10,000 digits of $\pi$ from <a href="https://www.piday.org/million/" rel="external nofollow noopener" target="_blank">here</a>, which is more than enough for test use.</p>
+
+<h3 id="data-format">Data format</h3>
+
+<p>Before using data to draw a chord plot, I need to determine how to represent and organize the data to draw in a neat manner. For convinience, I choose to store the frequncies of all combinations of two adjacent numbers with a 2-d array in <code class="language-plaintext highlighter-rouge">numpy</code>. If the categories are not numeric, they can also be indexed with 0,1,2,…,N, where N is the total numbers of categoryies.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">PI2array</span><span class="p">(</span><span class="n">ndigits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="n">PI</span><span class="p">[:</span><span class="n">ndigits</span><span class="p">]</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">pi</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">pi</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">array</span><span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nf">int</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">array</span>
+</code></pre></div></div>
+
+<p>By default, this function returns a statistic array of the first 100 digits of $\pi$:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nc">PI2array</span><span class="p">()</span>
+<span class="nf">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<p>With this data, I can determine how much space to allocate for each category. Two straightforward strategies can be used:</p>
+
+<ul>
+  <li>Evenly distributed between categories</li>
+  <li>With higher frequencies, comes more space</li>
+</ul>
+
+<p>Intuitively, the total frequency of a category is the sum of the frequency of being source and being target. Although in this $\pi$ case, these two frequencies are almost the same(since the target will become source in the next pair of adjacent digits), to unify the interface I still compute the sum of them:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compute_freq</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">data</span><span class="p">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"data.ndim must be 2 to draw a chord plot!"</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>With the frequencies, I can arrange a number of nodes for each category such that e curve can randomly choose a node from the source category and a node from the target category. I divide 2 from frequency to get the number of nodes. And I’d like to add a gap between different categories. I choose a gap size of 1.5 times the node interval. All these settings can be wrapped into a function to compute the locations of nodes with given data:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compute_locs</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span> 
+                 <span class="n">node_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                 <span class="n">gap_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="nf">compute_freq</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">freq</span> <span class="o">/</span> <span class="n">node_ratio</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">freq_</span> <span class="o">=</span> <span class="p">(</span><span class="n">freq</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">gap_ratio</span>
+    <span class="n">prop</span> <span class="o">=</span> <span class="n">freq_</span> <span class="o">/</span> <span class="n">freq_</span><span class="p">.</span><span class="nf">sum</span><span class="p">()</span>
+    <span class="n">gap</span> <span class="o">=</span> <span class="n">gap_ratio</span> <span class="o">/</span> <span class="n">freq_</span><span class="p">.</span><span class="nf">sum</span><span class="p">()</span>
+    
+    <span class="n">c</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">tri</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">triu</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cprop</span> <span class="o">=</span> <span class="n">prop</span> <span class="o">@</span> <span class="n">tri</span>
+
+    <span class="n">prop_range</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">vstack</span><span class="p">((</span><span class="n">cprop</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cprop</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">gap</span><span class="p">)).</span><span class="n">T</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">prop_range</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">freq</span><span class="p">))]</span>
+
+    <span class="k">return</span> <span class="n">locs</span>
+</code></pre></div></div>
+
+<p>One can verify the above settings readily:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">locs</span> <span class="o">=</span> <span class="nf">compute_locs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">(</span><span class="mf">0.06100179909883093</span><span class="p">,</span> <span class="mf">0.061001799098830856</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">1.5000000000000027</span>
+</code></pre></div></div>
+
+<h2 id="to-be-continued">To be continued</h2>
+
+  </article>
+</div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Yihao  Wang. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>
