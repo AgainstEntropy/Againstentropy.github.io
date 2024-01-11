@@ -26,7 +26,7 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
@@ -325,13 +325,13 @@
 
 <p>Therefore, eh writing codes we follow this slightly rigid but almost same logic:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.001'</span><span class="p">].</span><span class="nf">select_set</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.001</span><span class="sh">'</span><span class="p">].</span><span class="nf">select_set</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">bpy</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="nb">object</span><span class="p">.</span><span class="nf">delete</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Run the above codes line by line in the <strong>console</strong>, you’ll at least delete the <code class="language-plaintext highlighter-rouge">Cube.001</code> successfully. So what do I mean by “at least”? Well, if another object was also selected as well, it will also be deleted, unfortunately and innocently. Therefore, a safe practice is to deselect all objects before selecting and deleting one, which can be done by executing the following line:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bpy</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="nb">object</span><span class="p">.</span><span class="nf">select_all</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s">'DESELECT'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bpy</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="nb">object</span><span class="p">.</span><span class="nf">select_all</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">DESELECT</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Now try to use what you have learnt to delete the <code class="language-plaintext highlighter-rouge">Cube</code>. If you mess something up, feel free to withdraw or rollback operations by using <code class="language-plaintext highlighter-rouge">Ctrl+z</code> or clicking <code class="language-plaintext highlighter-rouge">Edit -&gt; Undo History</code>.</p>
@@ -341,7 +341,7 @@
 <p>Here is the first template function to delete all the objects in a given collection:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">delete_all_in_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">bpy</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="nb">object</span><span class="p">.</span><span class="nf">select_all</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s">'DESELECT'</span><span class="p">)</span>
+    <span class="n">bpy</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="nb">object</span><span class="p">.</span><span class="nf">select_all</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">DESELECT</span><span class="sh">'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">collections</span><span class="p">[</span><span class="n">collection_name</span><span class="p">].</span><span class="n">objects</span><span class="p">.</span><span class="nf">values</span><span class="p">():</span>
         <span class="n">item</span><span class="p">.</span><span class="nf">select_set</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">bpy</span><span class="p">.</span><span class="n">ops</span><span class="p">.</span><span class="nb">object</span><span class="p">.</span><span class="nf">delete</span><span class="p">()</span>
@@ -351,9 +351,9 @@
 
 <p>If you have followed the steps above perfectly, our cube will have an ugly name, <code class="language-plaintext highlighter-rouge">Cube.002</code>, which is really annoying that everyone cannot wait to change it to a brief one. So type the following code in the <strong>Console</strong> and run it:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.002'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">'Cube'</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.002</span><span class="sh">'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span>
 <span class="c1"># or equivalently
-</span><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.002'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">'Cube'</span>
+</span><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.002</span><span class="sh">'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span>
 </code></pre></div></div>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr>
@@ -363,11 +363,11 @@
 4
 5
 </pre></td>
-<td class="code"><pre> <span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.002'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">'Cube'</span>
+<td class="code"><pre> <span class="n">bpy</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.002</span><span class="sh">'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span>
 
  <span class="c1"># or equivalently
 </span>
- <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.002'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">'Cube'</span>
+ <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.002</span><span class="sh">'</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span>
 </pre></td>
 </tr></tbody></table></code></pre></figure>
 
@@ -379,7 +379,7 @@ Line#3 also works because the console is so considerate that it defines a variab
 
 <p>Enter only <code class="language-plaintext highlighter-rouge">D.objects['Cube'].</code> in the <strong>Console</strong> and press <code class="language-plaintext highlighter-rouge">Tab</code>, we will have a complete list of, not only properties, but also methods of the object as below:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">].</span>  <span class="c1"># &lt;-Tab pressed-&gt;
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span><span class="p">].</span>  <span class="c1"># &lt;-Tab pressed-&gt;
 </span>                      <span class="n">active_material</span>
                       <span class="n">active_material_index</span>
                       <span class="n">active_shape_key</span>
@@ -389,7 +389,7 @@ Line#3 also works because the console is so considerate that it defines a variab
                       <span class="n">animation_data_clear</span><span class="p">(</span>
                       <span class="n">animation_data_create</span><span class="p">(</span>
                       <span class="n">animation_visualization</span>
-                      <span class="p">...</span>
+                      <span class="bp">...</span>
 </code></pre></div></div>
 
 <blockquote>
@@ -398,15 +398,15 @@ Line#3 also works because the console is so considerate that it defines a variab
 
 <p>Don’t worry if you are confused bu most of unfamiliar properties and methods of an object, becasue we are not going to do anything with them. Let’s try to find something we can understand, for example, <code class="language-plaintext highlighter-rouge">D.objects['Cube'].location</code>:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">].</span><span class="n">location</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span><span class="p">].</span><span class="n">location</span>
 <span class="nc">Vector</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>We won’t be surprised by the returned results becasue the cube is located exactly at the origin of the world. Now I want to change its y-coordinate to 2, which can be achieved with:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">].</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span><span class="p">].</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="c1"># or equivalently
-</span><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">].</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span><span class="p">].</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span>
 </code></pre></div></div>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr>
@@ -414,9 +414,9 @@ Line#3 also works because the console is so considerate that it defines a variab
 2
 3
 </pre></td>
-<td class="code"><pre> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">].</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<td class="code"><pre> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span><span class="p">].</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
  <span class="c1"># or equivalently
-</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">].</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span>
+</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube</span><span class="sh">'</span><span class="p">].</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span>
 </pre></td>
 </tr></tbody></table></code></pre></figure>
 
@@ -424,7 +424,7 @@ Line#3 also works because the console is so considerate that it defines a variab
 
 <p>Now it’s time to continue what we said at the end of the step 1. If there are more than 1 cube in the scene (e.g., <code class="language-plaintext highlighter-rouge">Cube.001</code>) and you are not willing to delete it mercilessly, you may want to make it “invisible” for a while instead. Thus, we can use the <code class="language-plaintext highlighter-rouge">hide_set()</code> method:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.001'</span><span class="p">].</span><span class="nf">hide_set</span><span class="p">(</span>  <span class="c1"># &lt;-Tab pressed-&gt;
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.001</span><span class="sh">'</span><span class="p">].</span><span class="nf">hide_set</span><span class="p">(</span>  <span class="c1"># &lt;-Tab pressed-&gt;
 </span><span class="nf">hide_set</span><span class="p">()</span>  <span class="c1"># from here are prompts
 </span><span class="n">Object</span><span class="p">.</span><span class="nf">hide_set</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">view_layer</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="n">Hide</span> <span class="n">the</span> <span class="nb">object</span> <span class="k">for</span> <span class="n">viewport</span> <span class="n">editing</span><span class="p">.</span> <span class="n">This</span> <span class="n">hiding</span> <span class="n">state</span> <span class="ow">is</span> <span class="n">per</span> <span class="n">view</span> <span class="n">layer</span>
@@ -432,12 +432,12 @@ Line#3 also works because the console is so considerate that it defines a variab
 
 <p>Acordding to the prompts above, we know how to use <code class="language-plaintext highlighter-rouge">hide_set()</code> to make the cube invisibe:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.001'</span><span class="p">].</span><span class="nf">hide_set</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.001</span><span class="sh">'</span><span class="p">].</span><span class="nf">hide_set</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>We see that the cube indeedly disappears from the viewport, but don’t get too excited. To avoid the cube disturbing the animation, we also need to disable it in the rendering:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube.001'</span><span class="p">].</span><span class="n">hide_render</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span><span class="p">.</span><span class="n">objects</span><span class="p">[</span><span class="sh">'</span><span class="s">Cube.001</span><span class="sh">'</span><span class="p">].</span><span class="n">hide_render</span> <span class="o">=</span> <span class="bp">True</span>
 </code></pre></div></div>
 
 <p>Now you can see that the camera-shape button is off and the <code class="language-plaintext highlighter-rouge">Cube.001</code> will not appear in the rendering results.</p>
@@ -489,7 +489,7 @@ Line#3 also works because the console is so considerate that it defines a variab
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        © Copyright 2023 Yihao  Wang. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+        © Copyright 2024 Yihao  Wang. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
 
       </div>
     </footer>

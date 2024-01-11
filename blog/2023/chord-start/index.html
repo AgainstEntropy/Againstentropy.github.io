@@ -26,7 +26,7 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
@@ -236,14 +236,14 @@
 <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s">'projection'</span><span class="p">:</span> <span class="s">'polar'</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">projection</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">polar</span><span class="sh">'</span><span class="p">})</span>
 <span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="nf">set_rmax</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="nf">set_rticks</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c1"># Less radial ticks
 </span><span class="n">ax</span><span class="p">.</span><span class="nf">set_rlabel_position</span><span class="p">(</span><span class="o">-</span><span class="mf">22.5</span><span class="p">)</span>  <span class="c1"># Move radial labels away from plotted line
 </span><span class="n">ax</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="s">"A line plot on a polar axis"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">'bottom'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">"</span><span class="s">A line plot on a polar axis</span><span class="sh">"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="sh">'</span><span class="s">bottom</span><span class="sh">'</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
@@ -283,11 +283,11 @@
 <span class="n">pp1</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">PathPatch</span><span class="p">(</span>
     <span class="nc">Path</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span>
          <span class="p">[</span><span class="n">Path</span><span class="p">.</span><span class="n">MOVETO</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">CURVE3</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">CLOSEPOLY</span><span class="p">]),</span>
-    <span class="n">fc</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">.</span><span class="n">transData</span><span class="p">)</span>
+    <span class="n">fc</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">.</span><span class="n">transData</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="p">.</span><span class="nf">add_patch</span><span class="p">(</span><span class="n">pp1</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([</span><span class="mf">0.75</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">],</span> <span class="s">"ro"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="s">'The red point should be on the path'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">([</span><span class="mf">0.75</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">],</span> <span class="sh">"</span><span class="s">ro</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">'</span><span class="s">The red point should be on the path</span><span class="sh">'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
@@ -317,10 +317,10 @@
 <p>Then I referred to the implementation of <a href="https://github.com/ponnhide/pyCircos" rel="external nofollow noopener" target="_blank">pyCircos</a>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">chord_plot</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">start_list</span><span class="p">,</span> <span class="n">end_list</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
-    <span class="s">"""
+    <span class="sh">"""</span><span class="s">
     Visualize interrelationships between data.
-    ...
-    """</span>
+</span><span class="gp">    ...</span>
+    <span class="sh">"""</span>
     <span class="n">garc_id1</span> <span class="o">=</span> <span class="n">start_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">garc_id2</span> <span class="o">=</span> <span class="n">end_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">center</span> <span class="o">=</span> <span class="mi">0</span> 
@@ -340,7 +340,7 @@
     <span class="n">etop</span>   <span class="o">=</span> <span class="n">end_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> 
 
     <span class="k">if</span> <span class="n">facecolor</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">facecolor</span> <span class="o">=</span> <span class="n">Gcircle</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">color_cycle</span> <span class="o">%</span> <span class="nf">len</span><span class="p">(</span><span class="n">Gcircle</span><span class="p">.</span><span class="n">colors</span><span class="p">)]</span> <span class="o">+</span> <span class="s">"80"</span> 
+        <span class="n">facecolor</span> <span class="o">=</span> <span class="n">Gcircle</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">color_cycle</span> <span class="o">%</span> <span class="nf">len</span><span class="p">(</span><span class="n">Gcircle</span><span class="p">.</span><span class="n">colors</span><span class="p">)]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">80</span><span class="sh">"</span> 
         <span class="n">self</span><span class="p">.</span><span class="n">color_cycle</span> <span class="o">+=</span> <span class="mi">1</span>
     
     <span class="n">z1</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">stop</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="nf">abs</span><span class="p">((</span><span class="n">send</span><span class="o">-</span><span class="n">sstart</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">))</span> 
@@ -375,7 +375,7 @@
 <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># (0, 22.5, 45, 67.5, ...)
 </span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s">'projection'</span><span class="p">:</span> <span class="s">'polar'</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">projection</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">polar</span><span class="sh">'</span><span class="p">})</span>
 <span class="n">Path</span> <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="n">Path</span>
 <span class="n">path_data</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="n">MOVETO</span><span class="p">,</span> <span class="p">(</span><span class="n">degrees</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">)),</span>
@@ -384,7 +384,7 @@
 <span class="p">]</span>
 <span class="n">codes</span><span class="p">,</span> <span class="n">verts</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="o">*</span><span class="n">path_data</span><span class="p">)</span>
 <span class="n">path</span> <span class="o">=</span> <span class="n">mpath</span><span class="p">.</span><span class="nc">Path</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">codes</span><span class="p">)</span>
-<span class="n">patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">PathPatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'none'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">patch</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">PathPatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="sh">'</span><span class="s">none</span><span class="sh">'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="nf">add_patch</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="p">.</span><span class="nf">set_rlabel_position</span><span class="p">(</span><span class="o">-</span><span class="mf">22.5</span><span class="p">)</span>  <span class="c1"># Move radial labels away from plotted line
@@ -424,7 +424,7 @@
 <p>To add end nodes, we only need to add two lines of codes:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">degrees</span><span class="p">[:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">]:</span>
-    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="use-color-gradient">Use color gradient</h2>
@@ -451,14 +451,14 @@
 </span><span class="n">norm</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nc">Normalize</span><span class="p">(</span><span class="n">idxs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">idxs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">segments</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">([</span><span class="n">route</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">route</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="p">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s">'viridis'</span><span class="p">]</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="p">.</span><span class="n">colormaps</span><span class="p">[</span><span class="sh">'</span><span class="s">viridis</span><span class="sh">'</span><span class="p">]</span>
 <span class="n">lc</span> <span class="o">=</span> <span class="nc">LineCollection</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
 <span class="n">lc</span><span class="p">.</span><span class="nf">set_array</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span>
 <span class="n">lc</span><span class="p">.</span><span class="nf">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">line</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">add_collection</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span>
 
 <span class="c1"># draw the outer circle
-</span><span class="n">circle</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</span><span class="n">circle</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">black</span><span class="sh">'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="nf">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
 
 <span class="c1"># draw two ends
@@ -503,7 +503,7 @@
 <p>Now I’d like to apply custom color gradients to the curve. Considering that the chord diagram is composed of many curves pointing from one color to another, I first attempted to interpolate between two given colors, such as blue and red. Thanks to <code class="language-plaintext highlighter-rouge">matplotlib.colors.LinearSegmentedColormap</code>, I can directly use two colors to create a colormap. The only thing I need to do is replace the <code class="language-plaintext highlighter-rouge">cmap</code> with the following:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># R -&gt; B
-</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="s">'RedBlue'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="sh">'</span><span class="s">RedBlue</span><span class="sh">'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>which yields below:</p>
@@ -532,8 +532,8 @@
 
 <p>The <code class="language-plaintext highlighter-rouge">colors</code> argument fed to <code class="language-plaintext highlighter-rouge">from_list</code> method is a list of colors, whose elements can be either tuples and strings indicating colors. An example of using strings is as follows:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">"darkorange"</span><span class="p">,</span> <span class="s">"gold"</span><span class="p">,</span> <span class="s">"lawngreen"</span><span class="p">,</span> <span class="s">"lightseagreen"</span><span class="p">]</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="s">'AGreatCmap'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">darkorange</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">gold</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lawngreen</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightseagreen</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="sh">'</span><span class="s">AGreatCmap</span><span class="sh">'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>which yields below:</p>
@@ -595,7 +595,7 @@
         <span class="n">self</span><span class="p">.</span><span class="n">T2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">get_cmap</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]):</span>
-        <span class="k">return</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="s">'my_cmap'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">divsions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">LinearSegmentedColormap</span><span class="p">.</span><span class="nf">from_list</span><span class="p">(</span><span class="sh">'</span><span class="s">my_cmap</span><span class="sh">'</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">divsions</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_curve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">src_tgt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> 
                   <span class="n">cmap</span><span class="p">:</span> <span class="n">CmapLike</span><span class="p">):</span>
@@ -621,7 +621,7 @@
     
     <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="c1"># draw the outer circle
-</span>        <span class="n">circle</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">self</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</span>        <span class="n">circle</span> <span class="o">=</span> <span class="n">mpatches</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">self</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">black</span><span class="sh">'</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
         <span class="n">self</span><span class="p">.</span><span class="n">ax</span><span class="p">.</span><span class="nf">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">remove_curves</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
@@ -642,10 +642,10 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="nc">Chord</span><span class="p">()</span>
 <span class="n">graph</span><span class="p">.</span><span class="nf">remove_curves</span><span class="p">()</span>
 
-<span class="n">cmap1</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="nf">get_cmap</span><span class="p">([</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'blue'</span><span class="p">])</span>
+<span class="n">cmap1</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="nf">get_cmap</span><span class="p">([</span><span class="sh">'</span><span class="s">red</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">blue</span><span class="sh">'</span><span class="p">])</span>
 <span class="n">graph</span><span class="p">.</span><span class="nf">add_curve</span><span class="p">(</span><span class="n">start_end</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">)</span>
 
-<span class="n">cmap2</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="nf">get_cmap</span><span class="p">([</span><span class="s">'green'</span><span class="p">,</span> <span class="s">'gold'</span><span class="p">])</span>
+<span class="n">cmap2</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="nf">get_cmap</span><span class="p">([</span><span class="sh">'</span><span class="s">green</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">gold</span><span class="sh">'</span><span class="p">])</span>
 <span class="n">graph</span><span class="p">.</span><span class="nf">add_curve</span><span class="p">(</span><span class="n">start_end</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">((</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">210</span><span class="p">))</span> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">)</span>
 
 <span class="n">graph</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
@@ -717,7 +717,7 @@
 <p>Intuitively, the total frequency of a category is the sum of the frequency of being source and being target. Although in this $\pi$ case, these two frequencies are almost the same(since the target will become source in the next pair of adjacent digits), to unify the interface I still compute the sum of them:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compute_freq</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="n">data</span><span class="p">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"data.ndim must be 2 to draw a chord plot!"</span>
+    <span class="k">assert</span> <span class="n">data</span><span class="p">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="sh">"</span><span class="s">data.ndim must be 2 to draw a chord plot!</span><span class="sh">"</span>
     <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -793,7 +793,7 @@
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        © Copyright 2023 Yihao  Wang. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+        © Copyright 2024 Yihao  Wang. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
 
       </div>
     </footer>
